@@ -1,0 +1,11 @@
+@use "style/tokens";
+
+html {
+  background-color: tokens.$color-bg;
+  color: tokens.$color-fg;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}

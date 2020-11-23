@@ -1,0 +1,42 @@
+@use "../style/tokens";
+@use "../style/fonts";
+
+$base: ".my-day";
+
+#{$base}__run-result {
+  font-family: monospace;
+  white-space: pre;
+  font-size: 20px;
+}
+
+#{$base}__parts {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+#{$base}__part {
+  border: 2px solid tokens.$color-accent-strong;
+  border-radius: 4px;
+  padding: 16px 8px;
+}
+
+#{$base}__part-title {
+  @include fonts.caption();
+  background-color: tokens.$color-bg;
+  color: tokens.$color-accent-strong;
+  padding: 0 8px;
+  position: absolute;
+  transform: translate(16px, -28px);
+}
+
+#{$base}__testline {
+  font-family: monospace;
+  &--is-success {
+    color: tokens.$color-green;
+  }
+  &--is-fail {
+    color: tokens.$color-red;
+  }
+}

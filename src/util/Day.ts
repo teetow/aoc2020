@@ -5,7 +5,7 @@ export type Test<T> = {
 
 export type TestRun<T> = Test<T> & {
   index: number;
-  runResult: T;
+  runResult: string | number;
 };
 
 export type DayPart<T> = {

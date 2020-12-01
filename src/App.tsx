@@ -1,8 +1,9 @@
 import React, { FunctionComponent, useEffect, useState } from "react";
+import { Day } from "util/Day";
 
-import years from "./years/years";
 import DayPanel from "./components/DayPanel";
 import Picker from "./components/Picker";
+import years from "./years/years";
 
 import "./styles.scss";
 
@@ -25,7 +26,7 @@ const App: FunctionComponent = () => {
     [currentYearIndex]
   );
 
-  const currentYear = years.get(currentYearIndex);
+  const currentYear = years.get(currentYearIndex) as Map<number, Day<unknown>>;
 
   const currentDay = currentYear?.get(currentDayIndex);
 
@@ -47,7 +48,7 @@ const App: FunctionComponent = () => {
           }}
         />
       )}
-      {currentDay !== undefined && <DayPanel {...currentDay} />}
+      {currentDay !== undefined && <DayPanel day={currentDay} />}
     </div>
   );
 };

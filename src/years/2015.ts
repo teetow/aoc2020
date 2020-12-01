@@ -3,7 +3,8 @@ import day1 from "./2015/day1";
 import day2 from "./2015/day2";
 import day3 from "./2015/day3";
 
-const days: Map<number, Day<any>> = new Map();
+// eslint-disable-next-line
+const days: Map<number, Day<string> | Day<number> | Day<any>> = new Map();
 
 days.set(0, {
   title: "Day 0 (test)",

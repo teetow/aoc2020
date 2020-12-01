@@ -5,11 +5,7 @@ import { Day, TestRun } from "util/Day";
 
 import "./DayPanel.scss";
 
-const makeTestResult = ({
-  index,
-  result,
-  runResult,
-}: TestRun<string | number>) => {
+const makeTestResult = ({ index, result, runResult }: TestRun<unknown>) => {
   const isSuccess = runResult.toString() === result.toString();
 
   const base = "my-day__testline";
@@ -32,10 +28,12 @@ const makeTestResult = ({
   );
 };
 
-const DayPanel: FunctionComponent<Day<string | number>> = ({
-  data,
-  parts,
-}: Day<string | number>) => {
+type Props = {
+  day: Day<unknown>;
+};
+
+const DayPanel: FunctionComponent<Props> = ({ day }: Props) => {
+  const { data, parts } = day;
   return (
     <div className="my-day">
       <div className="my-day__actions" />

@@ -1,5 +1,5 @@
 import { Day } from "util/Day";
-import data from "./data/day2";
+import day2data from "./data/day2";
 
 type Box = { length: number; width: number; height: number };
 type Sides = { top: number; front: number; side: number };
@@ -9,9 +9,9 @@ const makeData = (raw: string): Box[] => {
   return rawLines.map((line) => {
     const [l, w, h] = line.split("x");
     return {
-      length: parseInt(l),
-      width: parseInt(w),
-      height: parseInt(h),
+      length: Number(l),
+      width: Number(w),
+      height: Number(h),
     };
   });
 };
@@ -55,7 +55,7 @@ const calcRibbon = (box: Box) => {
   return baseRibbon + extraRibbon;
 };
 
-const runA = (data: Box[]) => {
+const runA = (data: Box[]): string => {
   let total = 0;
   data.forEach((item) => {
     total += calcPaper(item);
@@ -63,7 +63,7 @@ const runA = (data: Box[]) => {
   return total.toString();
 };
 
-const runB = (data: Box[]) => {
+const runB = (data: Box[]): string => {
   let total = 0;
   data.forEach((item) => {
     total += calcRibbon(item);
@@ -74,7 +74,7 @@ const runB = (data: Box[]) => {
 
 const day2: Day<Box[]> = {
   title: "Day 2",
-  data: makeData(data),
+  data: makeData(day2data),
   parts: [
     {
       title: "Part A",

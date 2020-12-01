@@ -6,6 +6,7 @@ import Picker from "./components/Picker";
 import years from "./years/years";
 
 import "./styles.scss";
+import "./App.scss";
 
 const App: FunctionComponent = () => {
   const [currentYearIndex, setCurrentYearIndex] = useState(
@@ -31,24 +32,38 @@ const App: FunctionComponent = () => {
   const currentDay = currentYear?.get(currentDayIndex);
 
   return (
-    <div className="App">
-      <Picker
-        {...{
-          options: Array.from(years.keys()),
-          onChange: (year) => setCurrentYearIndex(year),
-          current: currentYearIndex,
-        }}
-      />
-      {currentYear !== undefined && (
+    <div className="my-app">
+      <div className="my-app__nav">
         <Picker
           {...{
-            options: Array.from(currentYear.keys()),
-            onChange: (day) => setCurrentDayIndex(day),
-            current: currentDayIndex,
+            options: Array.from(years.keys()),
+            onChange: (year) => setCurrentYearIndex(year),
+            current: currentYearIndex,
           }}
         />
-      )}
-      {currentDay !== undefined && <DayPanel day={currentDay} />}
+        {currentYear !== undefined && (
+          <Picker
+            {...{
+              options: Array.from(currentYear.keys()),
+              onChange: (day) => setCurrentDayIndex(day),
+              current: currentDayIndex,
+            }}
+          />
+        )}
+      </div>
+      <div className="my-app__main">
+        {currentDay !== undefined && <DayPanel day={currentDay} />}
+      </div>
+
+      <div className="my-app__boilerplate">
+        <p>
+          Made for{" "}
+          <a href="https://adventofcode.com/2020">Advent of Code 2020</a>
+        </p>
+        <p>
+          Source at <a href="https://github.com/teetow/aoc2020">GitHub</a>
+        </p>
+      </div>
     </div>
   );
 };

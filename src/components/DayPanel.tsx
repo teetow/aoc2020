@@ -23,9 +23,9 @@ const makeTestResult = ({ index, result, runResult }: TestRun<unknown>) => {
 
   return (
     <div key={index} className={lineClasses}>
-      <p>
+      <span>
         test {index} {lineText}
-      </p>
+      </span>
     </div>
   );
 };

@@ -20,6 +20,9 @@ $base: ".my-day";
   border: 2px solid tokens.$color-accent-strong;
   border-radius: 4px;
   padding: 16px 8px;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 16px;
 }
 
 #{$base}__part-title {
@@ -29,6 +32,16 @@ $base: ".my-day";
   padding: 0 8px;
   position: absolute;
   transform: translate(16px, -28px);
+}
+
+#{$base}__test-result {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(auto-fit, minmax(11em, auto));
+  padding: 0 8px;
+  row-gap: 8px;
+  justify-items: start;
+  align-content: start;
 }
 
 #{$base}__testline {

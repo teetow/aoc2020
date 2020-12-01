@@ -1,0 +1,10 @@
+@use "./style/tokens";
+
+.my-app {
+  font-family: Source Sans Pro;
+  text-align: center;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  padding: 0 32px;
+}

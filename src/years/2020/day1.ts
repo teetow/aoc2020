@@ -6,15 +6,49 @@ const testDataA: Array<Test<number[]>> = [
 ];
 
 const testDataB: Array<Test<number[]>> = [
-  { data: [1721, 979, 366, 299, 675, 1456], result: 0 },
+  { data: [1721, 979, 366, 299, 675, 1456], result: 979 * 366 * 675 },
 ];
 
+const findTwo = (data: number[]): number => {
+  let second = -1;
+
+  const first = data.find((a) =>
+    data.find((b) => {
+      if (a + b === 2020) {
+        second = b;
+        return true;
+      }
+      return false;
+    })
+  );
+  return first !== undefined ? first * second : -1;
+};
+
 const run = (data: number[]): number => {
-  return 0;
+  return findTwo(data);
+};
+
+const findThree = (data: number[]): number => {
+  let second = -1;
+  let third = -1;
+
+  const first = data.find((apple) =>
+    data.find((orange) =>
+      data.find((pear) => {
+        if (apple + orange + pear === 2020) {
+          second = orange;
+          third = pear;
+          return true;
+        }
+        return false;
+      })
+    )
+  );
+  return first !== undefined ? first * second * third : -1;
 };
 
 const runB = (data: number[]): number => {
-  return -1;
+  return findThree(data);
 };
 
 const day1: Day<number[]> = {

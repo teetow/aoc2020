@@ -1,0 +1,10 @@
+{
+  "short_name": "aoc2020",
+  "name": "Advent of Code 2020",
+  "icons": [
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

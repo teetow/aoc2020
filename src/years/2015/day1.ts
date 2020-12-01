@@ -1,12 +1,5 @@
 import { Day, Test } from "util/Day";
-import data from "./data/day1";
-/*
-(()) and ()() both result in floor 0.
-((( and (()(()( both result in floor 3.
-))((((( also results in floor 3.
-()) and ))( both result in floor -1 (the first basement level).
-))) and )())()) both result in floor -3.
-*/
+import day1data from "./data/day1";
 
 const testDataA: Array<Test<string>> = [
   { data: "(())", result: 0 },
@@ -25,11 +18,13 @@ const testDataB: Array<Test<string>> = [
   { data: "()())", result: 5 },
 ];
 
-const escape = (str: string) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-
 const count = (haystack: string, needle: string) => {
-  const re = RegExp(`${escape(needle)}`, "g");
-  return (haystack.match(re) || []).length;
+  let score = 0;
+
+  haystack.split("").forEach((step) => {
+    score += step === needle ? 1 : 0;
+  });
+  return score;
 };
 
 const run = (data: string) => count(data, "(") - count(data, ")");
@@ -47,16 +42,16 @@ const runB = (data: string) => {
 
 const day1: Day<string> = {
   title: "Day 1",
-  data: data,
+  data: day1data,
   parts: [
     {
       title: "Part 1",
-      func: (data) => run(data as string).toString(),
+      func: (data: string): string => run(data).toString(),
       tests: testDataA,
     },
     {
       title: "Part 2",
-      func: (data) => runB(data as string).toString(),
+      func: (data: string): string => runB(data).toString(),
       tests: testDataB,
     },
   ],

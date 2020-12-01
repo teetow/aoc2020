@@ -6,15 +6,6 @@ import day3 from "./2015/day3";
 // eslint-disable-next-line
 const days: Map<number, Day<string> | Day<number> | Day<any>> = new Map();
 
-days.set(0, {
-  title: "Day 0 (test)",
-  parts: [
-    { title: "Part A", func: () => 42 },
-    { title: "Part B", func: () => 1722 },
-  ],
-  data: "",
-});
-
 days.set(1, { ...day1 });
 days.set(2, { ...day2 });
 days.set(3, { ...day3 });

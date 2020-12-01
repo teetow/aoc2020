@@ -77,7 +77,7 @@ const day2: Day<Box[]> = {
   data: makeData(day2data),
   parts: [
     {
-      title: "Part A",
+      title: "Part 1",
       func: runA,
       tests: [
         { data: [{ length: 2, width: 3, height: 4 }], result: 52 + 6 },
@@ -85,7 +85,7 @@ const day2: Day<Box[]> = {
       ],
     },
     {
-      title: "Part B",
+      title: "Part 2",
       func: runB,
       tests: [
         { data: [{ length: 2, width: 3, height: 4 }], result: 10 + 24 },

@@ -1,13 +1,5 @@
-import { Day, Test } from "util/Day";
+import { Day } from "util/Day";
 import day1data from "./data/day1";
-
-const testDataA: Array<Test<number[]>> = [
-  { data: [1721, 979, 366, 299, 675, 1456], result: 1721 * 299 },
-];
-
-const testDataB: Array<Test<number[]>> = [
-  { data: [1721, 979, 366, 299, 675, 1456], result: 979 * 366 * 675 },
-];
 
 const findTwo = (data: number[]): number => {
   let second = -1;
@@ -57,13 +49,15 @@ const day1: Day<number[]> = {
   parts: [
     {
       title: "Part 1",
-      func: (data: number[]): string => run(data).toString(),
-      tests: testDataA,
+      func: run,
+      tests: [{ data: [1721, 979, 366, 299, 675, 1456], result: 1721 * 299 }],
     },
     {
       title: "Part 2",
-      func: (data: number[]): string => runB(data).toString(),
-      tests: testDataB,
+      func: runB,
+      tests: [
+        { data: [1721, 979, 366, 299, 675, 1456], result: 979 * 366 * 675 },
+      ],
     },
   ],
 };

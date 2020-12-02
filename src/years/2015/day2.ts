@@ -55,21 +55,21 @@ const calcRibbon = (box: Box) => {
   return baseRibbon + extraRibbon;
 };
 
-const runA = (data: Box[]): string => {
+const runA = (data: Box[]): number => {
   let total = 0;
   data.forEach((item) => {
     total += calcPaper(item);
   });
-  return total.toString();
+  return total;
 };
 
-const runB = (data: Box[]): string => {
+const runB = (data: Box[]): number => {
   let total = 0;
   data.forEach((item) => {
     total += calcRibbon(item);
   });
 
-  return total.toString();
+  return total;
 };
 
 const day2: Day<Box[]> = {

@@ -1,7 +1,7 @@
 import { Day, Test } from "util/Day";
 import day1data from "./data/day1";
 
-const testDataA: Array<Test<string>> = [
+const testDataA: Array<Test<string, number>> = [
   { data: "(())", result: 0 },
   { data: "()()", result: 0 },
   { data: "(((", result: 3 },
@@ -13,7 +13,7 @@ const testDataA: Array<Test<string>> = [
   { data: ")())())", result: -3 },
 ];
 
-const testDataB: Array<Test<string>> = [
+const testDataB: Array<Test<string, number>> = [
   { data: ")", result: 1 },
   { data: "()())", result: 5 },
 ];
@@ -46,12 +46,12 @@ const day1: Day<string> = {
   parts: [
     {
       title: "Part 1",
-      func: (data: string): string => run(data).toString(),
+      func: run,
       tests: testDataA,
     },
     {
       title: "Part 2",
-      func: (data: string): string => runB(data).toString(),
+      func: runB,
       tests: testDataB,
     },
   ],

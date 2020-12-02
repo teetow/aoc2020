@@ -1,18 +1,17 @@
-export type Test<T> = {
+export type Test<T, K extends number | string | boolean> = {
   data: T;
-  result: string | number;
+  result: K;
 };
 
-export type TestRun<T> = Test<T> & {
+export type TestRun<T extends number | string | boolean> = Test<unknown, T> & {
   index: number;
-  runResult: string | number;
+  runResult: T;
 };
 
 export type DayPart<T> = {
   title: string;
-  data?: T;
   func?: (data: T) => string | number;
-  tests?: Test<T>[];
+  tests?: Test<unknown, number | string | boolean>[];
 };
 
 export type Day<T> = {

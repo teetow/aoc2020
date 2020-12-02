@@ -7,8 +7,12 @@ import day1data from "years/2015/data/day1";
 
 import "./DayPanel.scss";
 
-const makeTestResult = ({ index, result, runResult }: TestRun<unknown>) => {
-  const isSuccess = runResult.toString() === result.toString();
+const makeTestResult = ({
+  index,
+  result,
+  runResult,
+}: TestRun<number | string | boolean>) => {
+  const isSuccess = runResult === result;
 
   const base = "my-day__testline";
   const lineClasses = classnames({
@@ -18,8 +22,8 @@ const makeTestResult = ({ index, result, runResult }: TestRun<unknown>) => {
   });
 
   const lineText = isSuccess
-    ? `passed (got ${result})`
-    : `failed (expected ${result}, got ${runResult})`;
+    ? `passed (got ${result.toString()})`
+    : `failed (expected ${result.toString()}, got ${runResult.toString()})`;
 
   return (
     <div key={index} className={lineClasses}>

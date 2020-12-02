@@ -1,5 +1,5 @@
 import count from "util/count";
-import { Day, Test } from "util/Day";
+import { Day } from "util/Day";
 import day2data from "./data/day2";
 
 /*
@@ -15,32 +15,32 @@ type PasswordRecord = {
   password: string;
 };
 
-const testDataA: Array<Test<PasswordRecord[], number>> = [
-  {
-    data: [
-      { lo: 1, hi: 3, char: "a", password: "abcde" },
-      { lo: 1, hi: 3, char: "b", password: "cdefg" },
-      { lo: 2, hi: 9, char: "c", password: "ccccccccc" },
-    ],
-    result: 2,
-  },
-];
+const testdata = [
+  { lo: 1, hi: 3, char: "a", password: "abcde" },
+  { lo: 1, hi: 3, char: "b", password: "cdefg" },
+  { lo: 2, hi: 9, char: "c", password: "ccccccccc" },
+] as PasswordRecord[];
 
-const checkPassword = (record: PasswordRecord): boolean => {
+const countChars = (record: PasswordRecord): boolean => {
   const charCount = count(record.password, record.char);
   return Number(record.lo) <= charCount && charCount <= Number(record.hi);
 };
 
-const run = (data: PasswordRecord[]): number => {
-  let hits = 0;
-  data.forEach((record) => {
-    hits += checkPassword(record) ? 1 : 0;
-  });
-  return hits;
+const runOne = (data: PasswordRecord[]): number => {
+  return data.filter((pw) => countChars(pw)).length;
 };
 
-const runB = (data: PasswordRecord[]): number => {
-  return -1;
+const countAtPos = (record: PasswordRecord): boolean => {
+  let hits = 0;
+  if (record.password[record.lo - 1] === record.char) hits += 1;
+
+  if (record.password[record.hi - 1] === record.char) hits += 1;
+
+  return hits === 1;
+};
+
+const runTwo = (data: PasswordRecord[]): number => {
+  return data.filter((pw) => countAtPos(pw)).length;
 };
 
 const day1: Day<PasswordRecord[]> = {
@@ -49,13 +49,13 @@ const day1: Day<PasswordRecord[]> = {
   parts: [
     {
       title: "Part 1",
-      func: run,
-      tests: testDataA,
+      func: runOne,
+      tests: [{ data: testdata, result: 2 }],
     },
     {
       title: "Part 2",
-      func: run,
-      tests: testDataA,
+      func: runTwo,
+      tests: [{ data: testdata, result: 1 }],
     },
   ],
 };

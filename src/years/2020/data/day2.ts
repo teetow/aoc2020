@@ -999,7 +999,7 @@ const rawData = `7-9 l: vslmtglbc
 7-11 l: lxmllrqllwlhl
 9-13 p: bppxpjpmpwcpppdprpp`;
 
-const re = /(?<lbound>\d+)-(?<hbound>\d+) (?<char>\w): (?<pw>\w+)/;
+const re = /(?<lo>\d+)-(?<hi>\d+) (?<char>\w): (?<pw>\w+)/;
 
 const data = rawData.split("\n").map((line) => {
   const match = re.exec(line)?.groups;

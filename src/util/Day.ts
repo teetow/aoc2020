@@ -5,7 +5,7 @@ export type Test<T, K extends number | string | boolean> = {
 
 export type TestRun<T extends number | string | boolean> = Test<unknown, T> & {
   index: number;
-  runResult: T;
+  runResult?: T;
 };
 
 export type DayPart<T> = {

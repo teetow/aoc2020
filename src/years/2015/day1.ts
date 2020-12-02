@@ -1,22 +1,5 @@
-import { Day, Test } from "util/Day";
+import { Day } from "util/Day";
 import day1data from "./data/day1";
-
-const testDataA: Array<Test<string, number>> = [
-  { data: "(())", result: 0 },
-  { data: "()()", result: 0 },
-  { data: "(((", result: 3 },
-  { data: "(()(()(", result: 3 },
-  { data: "))(((((", result: 3 },
-  { data: "())", result: -1 },
-  { data: "))(", result: -1 },
-  { data: ")))", result: -3 },
-  { data: ")())())", result: -3 },
-];
-
-const testDataB: Array<Test<string, number>> = [
-  { data: ")", result: 1 },
-  { data: "()())", result: 5 },
-];
 
 const count = (haystack: string, needle: string) => {
   let score = 0;
@@ -27,9 +10,7 @@ const count = (haystack: string, needle: string) => {
   return score;
 };
 
-const run = (data: string) => count(data, "(") - count(data, ")");
-
-const runB = (data: string) => {
+const moveToBasement = (data: string) => {
   let floor = 0;
   let lastFloor = 0;
   data.split("").some((char, index) => {
@@ -46,13 +27,26 @@ const day1: Day<string> = {
   parts: [
     {
       title: "Part 1",
-      func: run,
-      tests: testDataA,
+      func: (data) => count(data, "(") - count(data, ")"),
+      tests: [
+        { data: "(())", result: 0 },
+        { data: "()()", result: 0 },
+        { data: "(((", result: 3 },
+        { data: "(()(()(", result: 3 },
+        { data: "))(((((", result: 3 },
+        { data: "())", result: -1 },
+        { data: "))(", result: -1 },
+        { data: ")))", result: -3 },
+        { data: ")())())", result: -3 },
+      ],
     },
     {
       title: "Part 2",
-      func: runB,
-      tests: testDataB,
+      func: (data) => moveToBasement(data),
+      tests: [
+        { data: ")", result: 1 },
+        { data: "()())", result: 5 },
+      ],
     },
   ],
 };

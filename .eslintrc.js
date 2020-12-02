@@ -24,5 +24,6 @@ module.exports = {
         explicitSpread: "ignore",
       },
     ],
+    "@typescript-eslint/explicit-module-boundary-types": "off"
   },
 };

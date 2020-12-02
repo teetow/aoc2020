@@ -16,10 +16,6 @@ const findTwo = (data: number[]): number => {
   return first !== undefined ? first * second : -1;
 };
 
-const run = (data: number[]): number => {
-  return findTwo(data);
-};
-
 const findThree = (data: number[]): number => {
   let second = -1;
   let third = -1;
@@ -39,22 +35,18 @@ const findThree = (data: number[]): number => {
   return first !== undefined ? first * second * third : -1;
 };
 
-const runB = (data: number[]): number => {
-  return findThree(data);
-};
-
 const day1: Day<number[]> = {
   title: "Day 1",
   data: day1data,
   parts: [
     {
       title: "Part 1",
-      func: run,
+      func: (data) => findTwo(data),
       tests: [{ data: [1721, 979, 366, 299, 675, 1456], result: 1721 * 299 }],
     },
     {
       title: "Part 2",
-      func: runB,
+      func: (data) => findThree(data),
       tests: [
         { data: [1721, 979, 366, 299, 675, 1456], result: 979 * 366 * 675 },
       ],

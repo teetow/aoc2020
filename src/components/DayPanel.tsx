@@ -23,7 +23,8 @@ const makeTestResult = ({
 
   const lineText = isSuccess
     ? `passed (got ${result.toString()})`
-    : `failed (expected ${result.toString()}, got ${runResult.toString()})`;
+    : `failed (expected ${result.toString()}, 
+       got ${runResult?.toString() || "nothing"})`;
 
   return (
     <div key={index} className={lineClasses}>
@@ -48,7 +49,7 @@ const makeDay = (part: DayPart<unknown>, data: unknown) => {
         {part.tests?.map((test, index) =>
           makeTestResult({
             index,
-            runResult: part.func?.(test.data) || "",
+            runResult: part.func?.(test.data),
             ...test,
           })
         )}

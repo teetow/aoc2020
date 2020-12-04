@@ -1,4 +1,4 @@
-const rawData = `7-9 l: vslmtglbc
+const data = `7-9 l: vslmtglbc
 2-3 s: hpbs
 1-3 v: pvvr
 2-8 h: hhhhvhhh
@@ -998,17 +998,5 @@ const rawData = `7-9 l: vslmtglbc
 4-9 m: mcmmmmnfmwmwfmmljxmv
 7-11 l: lxmllrqllwlhl
 9-13 p: bppxpjpmpwcpppdprpp`;
-
-const re = /(?<lo>\d+)-(?<hi>\d+) (?<char>\w): (?<pw>\w+)/;
-
-const data = rawData.split("\n").map((line) => {
-  const match = re.exec(line)?.groups;
-  return {
-    lo: Number(match?.lo),
-    hi: Number(match?.hi),
-    char: match?.char || "",
-    password: match?.pw || "",
-  };
-});
 
 export default data;

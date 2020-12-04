@@ -10,12 +10,15 @@ export type TestRun<T extends number | string | boolean> = Test<unknown, T> & {
 
 export type DayPart<T> = {
   title: string;
-  func?: (data: T) => string | number;
+  description?: string;
+  func: (data: T) => string | number;
   tests?: Test<unknown, number | string | boolean>[];
 };
 
 export type Day<T> = {
-  title?: string;
-  data: T;
+  data: string;
   parts: DayPart<T>[];
+  title?: string;
+  description?: string;
+  dataConv: (data: string) => T;
 };

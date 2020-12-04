@@ -197,8 +197,6 @@ const data = `2004
 1825
 1737
 1799
-1532`
-  .split("\n")
-  .map((raw: string) => Number(raw));
+1532`;
 
 export default data;

@@ -1,9 +1,9 @@
 import classnames from "classnames";
 import React, { FunctionComponent } from "react";
-
+import ReactMarkdown from "react-markdown";
 import { Day, DayPart, TestRun } from "util/Day";
 import prettyPerfTimer from "util/time";
-import day1data from "years/2015/data/day1";
+import DataViewer from "./DataViewer";
 
 import "./DayPanel.scss";
 
@@ -35,25 +35,36 @@ const makeTestResult = ({
   );
 };
 
-const makeDay = (part: DayPart<unknown>, data: unknown) => {
+const makeDay = (
+  part: DayPart<unknown>,
+  data: string,
+  dataConv: (data: string) => unknown
+) => {
   const t0 = performance.now();
-  const rs = day1data !== undefined ? part.func?.(data) : "no func";
+  const rs = part.func(dataConv(data));
   const t1 = performance.now() - t0;
 
   return (
     <div key={part.title} className="my-day__part">
       <div className="my-day__part-title">{part.title}</div>
-      <div className="my-day__run-result">{rs}</div>
-      <div className="my-day__time">{prettyPerfTimer(t1)}</div>
+      {part.description && (
+        <div className="my-day__part-desc">
+          <ReactMarkdown>{part.description}</ReactMarkdown>
+        </div>
+      )}
       <div className="my-day__test-result">
         {part.tests?.map((test, index) =>
           makeTestResult({
             index,
-            runResult: part.func?.(test.data),
+            runResult: part.func?.(
+              dataConv !== undefined ? dataConv(test.data as string) : test.data
+            ),
             ...test,
           })
         )}
       </div>
+      <div className="my-day__run-result">{rs}</div>
+      <div className="my-day__time">{prettyPerfTimer(t1)}</div>
     </div>
   );
 };
@@ -63,13 +74,22 @@ type Props = {
 };
 
 const DayPanel: FunctionComponent<Props> = ({ day }: Props) => {
-  const { data, parts } = day;
+  const { data, parts, title, description, dataConv } = day;
 
   return (
     <div className="my-day">
-      <div className="my-day__actions" />
+      <div className="my-day__title">{title}</div>
+
+      {description && (
+        <div className="my-day__desc">
+          <ReactMarkdown>{description}</ReactMarkdown>
+        </div>
+      )}
+
+      {data && <DataViewer data={data} />}
+
       <div className="my-day__parts">
-        {parts.map((part) => makeDay(part, data))}
+        {parts.map((part) => makeDay(part, data, dataConv))}
       </div>
     </div>
   );

@@ -1,6 +1,10 @@
 import { Day } from "util/Day";
 import day3data from "./data/day3";
 
+const makeData = (data: string) => {
+  return data.split("");
+};
+
 type Point = {
   x: number;
   y: number;
@@ -20,8 +24,6 @@ const addPoints = (one: Point, other: Point): Point => {
 
 const getMove = (raw: string) => Moves[raw];
 
-const makeData = (raw: string) => raw.split("");
-
 const runA = (data: string[]): number => {
   const map = new Map<Point, number>();
   const coord = pt(0, 0);
@@ -35,18 +37,18 @@ const runA = (data: string[]): number => {
 
 const day3: Day<string[]> = {
   title: "Day 3",
-  data: makeData(day3data),
+  data: day3data,
+  dataConv: makeData,
   parts: [
     {
       title: "Part 1",
       func: runA,
       tests: [
-        { data: makeData(">"), result: 2 },
-        { data: makeData("^>v<"), result: 4 },
-        { data: makeData("^v^v^v^v^v"), result: 2 },
+        { data: ">", result: 2 },
+        { data: "^>v<", result: 4 },
+        { data: "^v^v^v^v^v", result: 2 },
       ],
     },
-    { title: "Part 2" },
   ],
 };
 

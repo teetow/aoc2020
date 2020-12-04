@@ -24,6 +24,7 @@ const moveToBasement = (data: string) => {
 const day1: Day<string> = {
   title: "Day 1",
   data: day1data,
+  dataConv: (data) => data,
   parts: [
     {
       title: "Part 1",

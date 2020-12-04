@@ -1,6 +1,8 @@
 import { Day } from "util/Day";
 import { data as day3data, testdata } from "./data/day3";
 
+const makeData = (data: string) => data.split("\n").map((row) => row.split(""));
+
 type Slope = {
   stepX: number;
   stepY: number;
@@ -35,6 +37,7 @@ const part2slopes = [
 const day3: Day<string[][]> = {
   title: "Day 3",
   data: day3data,
+  dataConv: makeData,
   parts: [
     {
       title: "Part 1",

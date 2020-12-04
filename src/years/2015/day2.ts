@@ -5,15 +5,18 @@ type Box = { length: number; width: number; height: number };
 type Sides = { top: number; front: number; side: number };
 
 const makeData = (raw: string): Box[] => {
-  const rawLines = raw.split("\n").map((line) => line);
-  return rawLines.map((line) => {
-    const [l, w, h] = line.split("x");
-    return {
-      length: Number(l),
-      width: Number(w),
-      height: Number(h),
-    };
-  });
+  if (typeof raw === "string") {
+    const rawLines = raw.split("\n").map((line) => line);
+    return rawLines.map((line) => {
+      const [l, w, h] = line.split("x");
+      return {
+        length: Number(l),
+        width: Number(w),
+        height: Number(h),
+      };
+    });
+  }
+  return [];
 };
 
 const getSides = (box: Box): Sides => {
@@ -74,7 +77,8 @@ const runB = (data: Box[]): number => {
 
 const day2: Day<Box[]> = {
   title: "Day 2",
-  data: makeData(day2data),
+  data: day2data,
+  dataConv: makeData,
   parts: [
     {
       title: "Part 1",

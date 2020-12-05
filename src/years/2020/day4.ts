@@ -45,7 +45,7 @@ const validatePasswordFields = (data: string[]) => {
   return validPassports.length;
 };
 
-const day3: Day<string[]> = {
+const day4: Day<string[]> = {
   title: "Day 4",
   description: `You arrive at the airport. A very long line has formed for 
 the automatic passport scanners, because they're having trouble detecting 
@@ -82,4 +82,4 @@ which passports have all required fields.`,
   ],
 };
 
-export default day3;
+export default day4;

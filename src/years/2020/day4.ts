@@ -46,10 +46,10 @@ const validatePasswordFields = (data: string[]) => {
 };
 
 const day4: Day<string[]> = {
-  title: "Day 4",
-  description: `You arrive at the airport. A very long line has formed for 
-the automatic passport scanners, because they're having trouble detecting 
-which passports have all required fields.`,
+  title: "Passport Processing",
+  description: `
+You arrive at the airport. A very long line has formed for the automatic passport 
+scanners, because they're having trouble detecting which passports have all required fields.`,
   data: day4data,
   dataConv: makeData,
   parts: [

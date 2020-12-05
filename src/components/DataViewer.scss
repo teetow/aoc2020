@@ -1,0 +1,26 @@
+@use "../style/tokens";
+@use "../style/fonts";
+@use "../style/styles";
+
+$base: ".my-day__dataview";
+
+#{$base} {
+  @include styles.draw-border();
+}
+
+#{$base}-title {
+  @include fonts.caption();
+  color: tokens.$color-accent-strong;
+  background-color: tokens.$color-bg;
+  transform: translate(24px, -16px);
+  display: inline-block;
+  padding: 2px 8px;
+}
+
+#{$base}-data {
+  font-family: monospace;
+  max-width: 25vw;
+  overflow: hidden;
+  white-space: pre;
+  padding: 0 32px 32px;
+}

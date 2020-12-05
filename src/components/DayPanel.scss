@@ -1,15 +1,36 @@
 @use "../style/tokens";
 @use "../style/fonts";
+@use "../style//styles";
 
 $base: ".my-day";
 
 #{$base} {
   display: grid;
-  gap: 32px;
+  column-gap: 64px;
+  row-gap: 16px;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-areas:
+    "dayindex dayindex dayindex dayindex side side"
+    "header header header header side side"
+    "desc desc desc desc side side"
+    "main main main main main main";
 }
 
 #{$base}__title {
   @include fonts.title-lg;
+  grid-area: header;
+}
+
+#{$base}__dayindex {
+  grid-area: dayindex;
+}
+
+#{$base}__desc {
+  grid-area: desc;
+}
+
+#{$base}__sampledata {
+  grid-area: side;
 }
 
 #{$base}__run-result {
@@ -22,12 +43,12 @@ $base: ".my-day";
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: 32px;
+  grid-area: main;
 }
 
 #{$base}__part {
-  border: 2px solid tokens.$color-accent-strong;
-  border-radius: 4px;
+  @include styles.draw-border();
   padding: 32px;
   display: grid;
   grid-template-rows: auto auto 1fr;
@@ -55,13 +76,6 @@ $base: ".my-day";
   row-gap: 8px;
   justify-items: start;
   align-content: start;
-}
-
-#{$base}__data {
-  font-family: monospace;
-  max-width: 25vw;
-  overflow: hidden;
-  white-space: pre;
 }
 
 #{$base}__testline {

@@ -51,7 +51,7 @@ const findSeatIdGap = (passes: BoardingPass[]): number => {
 };
 
 const day5: Day<BoardingPass[]> = {
-  title: "Day 5 -- Binary Boarding",
+  title: "Binary Boarding",
   description: `You dropped your boarding pass! Find your seat through process of elimination.`,
   data: day5data,
   dataConv: makeData,

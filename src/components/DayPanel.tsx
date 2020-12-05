@@ -71,22 +71,37 @@ const makeDay = (
 
 type Props = {
   day: Day<unknown>;
+  year: number;
+  dayIndex: number;
 };
 
-const DayPanel: FunctionComponent<Props> = ({ day }: Props) => {
+const DayPanel: FunctionComponent<Props> = ({ day, year, dayIndex }: Props) => {
   const { data, parts, title, description, dataConv } = day;
 
   return (
     <div className="my-day">
       <div className="my-day__title">{title}</div>
+      <div className="my-day__dayindex">Day {dayIndex}</div>
 
       {description && (
         <div className="my-day__desc">
-          <ReactMarkdown>{description}</ReactMarkdown>
+          <ReactMarkdown>
+            {`${description}
+            
+[Read full story](https://adventofcode.com/${year}/day/${dayIndex})
+
+[View solution on GitHub](https://github.com/teetow/aoc2020/blob/master/src/years/${year}/day${dayIndex}.ts)
+
+`}
+          </ReactMarkdown>
         </div>
       )}
 
-      {data && <DataViewer data={data} />}
+      {data && (
+        <div className="my-day__sampledata">
+          <DataViewer data={data} />
+        </div>
+      )}
 
       <div className="my-day__parts">
         {parts.map((part) => makeDay(part, data, dataConv))}

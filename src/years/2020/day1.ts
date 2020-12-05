@@ -40,10 +40,10 @@ const findThree = (data: number[]): number => {
 };
 
 const day1: Day<number[]> = {
-  title: "Day 1 -- Report Repair",
-  description: `Before you leave for vacation, the Elves in accounting need you to fix your expense report.
-  [Read full story](https://adventofcode.com/2020/day/1)
-  `,
+  title: "Report Repair",
+  description: `
+Before you leave for vacation, the Elves in accounting need you to fix your expense report.
+`,
   data: day1data,
   dataConv: makeData,
   parts: [

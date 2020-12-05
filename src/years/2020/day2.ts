@@ -42,22 +42,38 @@ const testdata = [
   .map((row) => `${row.lo}-${row.hi} ${row.char}: ${row.password}`)
   .join("\n");
 
-const day1: Day<PasswordRecord[]> = {
-  title: "Day 1",
+const day2: Day<PasswordRecord[]> = {
+  title: "Password Philosophy",
+  description: `
+The shopkeeper at the North Pole Toboggan Rental Shop is having a bad day. 
+"Something's wrong with our computers; we can't log in!" 
+
+They have created a list of passwords and the policy for that password.
+  `,
   data: day2data,
   dataConv: makeData,
   parts: [
     {
       title: "Part 1",
+      description: `
+* The first two numbers indicate the lowest and highest number of times a given letter may appear
+* Count the number of valid passwords
+    `,
       func: (data) => data.filter((pw) => countChars(pw)).length,
       tests: [{ data: testdata, result: 2 }],
     },
     {
       title: "Part 2",
+      description: `
+* Actually, that's not how the password policy works
+* Each policy actually describes two positions in the password
+* Exactly one of these positions must contain the given letter
+* Count the new number of valid passwords
+`,
       func: (data) => data.filter((pw) => countAtPos(pw)).length,
       tests: [{ data: testdata, result: 1 }],
     },
   ],
 };
 
-export default day1;
+export default day2;

@@ -1,12 +1,24 @@
 @use "./style/tokens";
+@use "./style/fonts";
 
-.my-app {
+$base: ".my-app";
+$gap: 64px;
+
+#{$base} {
   font-family: Source Sans Pro;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  height: 100vh;
+  height: calc(100vh - #{$gap / 2});
   margin: 0 auto;
-  padding: 0 64px;
+  padding: 0 #{$gap} #{$gap / 2};
   max-width: 960px;
-  gap: 32px;
+  gap: #{$gap / 2};
+}
+
+#{$base}__boilerplate {
+  @include fonts.body-sm();
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  gap: #{$gap / 2};
 }

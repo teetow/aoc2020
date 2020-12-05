@@ -24,6 +24,7 @@ module.exports = {
         explicitSpread: "ignore",
       },
     ],
-    "@typescript-eslint/explicit-module-boundary-types": "off"
+    "react/require-default-props": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
   },
 };

@@ -52,17 +52,23 @@ const App: FunctionComponent = () => {
         )}
       </div>
       <div className="my-app__main">
-        {currentDay !== undefined && <DayPanel day={currentDay} />}
+        {currentDay !== undefined && (
+          <DayPanel
+            day={currentDay}
+            year={currentYearIndex}
+            dayIndex={currentDayIndex}
+          />
+        )}
       </div>
 
       <div className="my-app__boilerplate">
-        <p>
+        <span>
           Made for{" "}
           <a href="https://adventofcode.com/2020">Advent of Code 2020</a>
-        </p>
-        <p>
+        </span>
+        <span>
           Source at <a href="https://github.com/teetow/aoc2020">GitHub</a>
-        </p>
+        </span>
       </div>
     </div>
   );

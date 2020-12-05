@@ -25,3 +25,12 @@ $base: ".my-picker";
     background-color: tokens.$color-accent;
   }
 }
+
+#{$base} a {
+  &,
+  &:visited {
+    color: tokens.$color-fg;
+  }
+
+  text-decoration: none;
+}

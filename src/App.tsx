@@ -8,14 +8,29 @@ import years from "./years/years";
 import "./styles.scss";
 import "./App.scss";
 
+const parseLocationPath = (path: string): { year: number; day: number } => {
+  const [year, day] = path.split("/").slice(-2);
+  return { year: Number(year) || 0, day: Number(day) || 0 };
+};
+
 const App: FunctionComponent = () => {
   const [currentYearIndex, setCurrentYearIndex] = useState(
-    Number(localStorage.getItem("currentYear") || "")
+    parseLocationPath(window.location.pathname).year ||
+      Number(localStorage.getItem("currentYear") || "")
   );
 
   const [currentDayIndex, setCurrentDayIndex] = useState(
-    Number(localStorage.getItem("currentDay") || "")
+    parseLocationPath(window.location.pathname).day ||
+      Number(localStorage.getItem("currentDay") || "")
   );
+
+  useEffect(() => {
+    window.history.pushState(
+      null,
+      document.title,
+      `/aoc2020/${currentYearIndex}/${currentDayIndex}`
+    );
+  }, [currentYearIndex, currentDayIndex]);
 
   useEffect(
     () => localStorage.setItem("currentDay", currentDayIndex.toString()),

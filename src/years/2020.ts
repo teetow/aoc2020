@@ -4,13 +4,15 @@ import day2 from "./2020/day2";
 import day3 from "./2020/day3";
 import day4 from "./2020/day4";
 import day5 from "./2020/day5";
+import day6 from "./2020/day6";
 
-const days = new Map<number, Day<any>>();
+const days = new Map<number, Day<unknown>>();
 
-days.set(1, { ...day1 });
-days.set(2, { ...day2 });
-days.set(3, { ...day3 });
-days.set(4, { ...day4 });
-days.set(5, { ...day5 });
+days.set(1, { ...(day1 as Day<unknown>) });
+days.set(2, { ...(day2 as Day<unknown>) });
+days.set(3, { ...(day3 as Day<unknown>) });
+days.set(4, { ...(day4 as Day<unknown>) });
+days.set(5, { ...(day5 as Day<unknown>) });
+days.set(6, { ...(day6 as Day<unknown>) });
 
 export default days;

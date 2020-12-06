@@ -35,15 +35,19 @@ const makeTestResult = ({
   );
 };
 
-const makeDay = (
-  part: DayPart<unknown>,
-  data: string,
-  dataConv: (data: string) => unknown
-) => {
+const runDayPart = (day: Day<unknown>, part: DayPart<unknown>) => {
   const t0 = performance.now();
-  const rs = part.func(dataConv(data));
+  const rs = part.func(day.dataConv(day.data));
   const t1 = performance.now() - t0;
+  return (
+    <>
+      <div className="my-day__run-result">{rs}</div>
+      <div className="my-day__time">{prettyPerfTimer(t1)}</div>
+    </>
+  );
+};
 
+const makeDay = (day: Day<unknown>, part: DayPart<unknown>) => {
   return (
     <div key={part.title} className="my-day__part">
       <div className="my-day__part-title">{part.title}</div>
@@ -57,14 +61,15 @@ const makeDay = (
           makeTestResult({
             index,
             runResult: part.func?.(
-              dataConv !== undefined ? dataConv(test.data as string) : test.data
+              day.dataConv !== undefined
+                ? day.dataConv(test.data as string)
+                : test.data
             ),
             ...test,
           })
         )}
       </div>
-      <div className="my-day__run-result">{rs}</div>
-      <div className="my-day__time">{prettyPerfTimer(t1)}</div>
+      {part.func && runDayPart(day, part)}
     </div>
   );
 };
@@ -104,7 +109,7 @@ const DayPanel: FunctionComponent<Props> = ({ day, year, dayIndex }: Props) => {
       )}
 
       <div className="my-day__parts">
-        {parts.map((part) => makeDay(part, data, dataConv))}
+        {parts.map((part) => makeDay(day, part))}
       </div>
     </div>
   );

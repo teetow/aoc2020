@@ -14,13 +14,12 @@ const countUniqueAnswers = (group: string): number => {
 
 const countCommonAnswers = (group: string): number => {
   const people = group.split("\n");
-  const commonGroupAnswers = people.reduce((allAnswers, person) => {
-    const a = allAnswers.split("");
-    const personAnswers = person.split("");
-    const commonAnswers = a
-      .map((answer) => (personAnswers.includes(answer) ? answer : ""))
+  const commonGroupAnswers = people.reduce((acc, person) => {
+    const groupAnswers = acc
+      .split("")
+      .map((answer) => (person.split("").includes(answer) ? answer : ""))
       .join("");
-    return commonAnswers;
+    return groupAnswers;
   });
   return commonGroupAnswers.length;
 };
@@ -40,7 +39,7 @@ As your flight approaches the airport, customs declaration forms are distributed
 * Calculate the sum of those counts
 `,
       func: (data) =>
-        data.map(countUniqueAnswers).reduce((prev, cur) => prev + cur),
+        data.map(countUniqueAnswers).reduce((acc, value) => acc + value),
       tests: [
         { data: testdata1a, result: 6 },
         { data: testdata1b, result: 11 },
@@ -53,7 +52,7 @@ As your flight approaches the airport, customs declaration forms are distributed
 * Calculate the sum of those counts
 `,
       func: (data) =>
-        data.map(countCommonAnswers).reduce((prev, cur) => prev + cur),
+        data.map(countCommonAnswers).reduce((acc, value) => acc + value),
       tests: [{ data: testdata1b, result: 6 }],
     },
   ],

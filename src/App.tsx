@@ -52,7 +52,7 @@ const AppMain = () => {
 
 const App: FunctionComponent = () => {
   return (
-    <HashRouter basename="/aoc2020">
+    <HashRouter>
       <div className="my-app">
         <Route exact path="/:year?/:day?">
           <AppMain />

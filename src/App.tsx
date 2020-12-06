@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from "react";
-import { BrowserRouter, Route, useParams } from "react-router-dom";
+import { HashRouter, Route, useParams } from "react-router-dom";
 import { Day } from "util/Day";
 import "./App.scss";
 import DayPanel from "./components/DayPanel";
@@ -52,7 +52,7 @@ const AppMain = () => {
 
 const App: FunctionComponent = () => {
   return (
-    <BrowserRouter basename="/aoc2020">
+    <HashRouter basename="/aoc2020">
       <div className="my-app">
         <Route exact path="/:year?/:day?">
           <AppMain />
@@ -68,7 +68,7 @@ const App: FunctionComponent = () => {
           </span>
         </div>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

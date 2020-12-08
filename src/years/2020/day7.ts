@@ -7,14 +7,9 @@ type Bag = {
   children?: SubBag[];
 };
 
-type SubBag = {
+type SubBag = Bag & {
   quantity: number;
-  bag: Bag;
 };
-
-// const childBagRe = /(?<qty>\d+) (?<mod>\w+) (?<color>\w+?) bag[s]?/;
-const childBagRe = /(?<qty>\d+) (?<desc>.+?) bag[s]?/;
-const bagRe = /(?<mod>\w+) (?<color>\w+?) bag[s]?/;
 
 const makeData = (data: string) => {
   const bags = data.split("\n");
@@ -38,9 +33,10 @@ const makeData = (data: string) => {
 
     contents.split(", ").forEach((childBagName) => {
       const [qty, mod, color] = childBagName.split(/[ .]/);
-
-      const subBag = findOrCreateBag(`${mod} ${color}`);
-      bag.children?.push({ quantity: Number(qty), bag: subBag });
+      if (!Number.isNaN(Number(qty))) {
+        const subBag = findOrCreateBag(`${mod} ${color}`);
+        bag.children?.push({ quantity: Number(qty), ...subBag });
+      }
     });
   });
 
@@ -52,7 +48,7 @@ const findBagParents = (bags: Bag[], bag: Bag): Bag[] => {
     bags.filter(
       (candidate) =>
         candidate.children?.find(
-          (child) => child.bag.mod === bag.mod && child.bag.color === bag.color
+          (child) => child.mod === bag.mod && child.color === bag.color
         ) !== undefined
     )
   );
@@ -64,16 +60,13 @@ const findBagParents = (bags: Bag[], bag: Bag): Bag[] => {
 };
 
 const findBagChildren = (bags: Bag[], bag: Bag): number => {
-  const actualBag = bags.find(
-    (b) => b.mod === bag.mod && b.color === bag.color
-  );
-  let childCount = 0;
-  actualBag?.children?.forEach((child) => {
-    childCount += child.quantity;
-    childCount += findBagChildren(bags, child.bag);
-  });
+  const srcBag = bags.find((b) => b.mod === bag.mod && b.color === bag.color);
 
-  return childCount;
+  const bagChildrenCount = srcBag?.children?.map((child) => {
+    return child.quantity + findBagChildren(bags, child) * child.quantity;
+  });
+  const accum = bagChildrenCount?.reduce((acc, cur) => acc + cur, 0) || 0;
+  return accum;
 };
 
 const day7: Day<Bag[]> = {

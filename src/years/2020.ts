@@ -6,6 +6,7 @@ import day4 from "./2020/day4";
 import day5 from "./2020/day5";
 import day6 from "./2020/day6";
 import day7 from "./2020/day7";
+import day8 from "./2020/day8";
 
 const days = new Map<number, Day<unknown>>();
 
@@ -16,5 +17,6 @@ days.set(4, { ...(day4 as Day<unknown>) });
 days.set(5, { ...(day5 as Day<unknown>) });
 days.set(6, { ...(day6 as Day<unknown>) });
 days.set(7, { ...(day7 as Day<unknown>) });
+days.set(8, { ...(day8 as Day<unknown>) });
 
 export default days;

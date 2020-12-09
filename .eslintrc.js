@@ -25,6 +25,11 @@ module.exports = {
       },
     ],
     "react/require-default-props": "off",
+    '@typescript-eslint/lines-between-class-members': [
+      'error',
+      'always',
+      { 'exceptAfterSingleLine': true },
+    ],
     "@typescript-eslint/explicit-module-boundary-types": "off",
   },
 };

@@ -1,23 +1,9 @@
+import { findTwo } from "util/collections";
 import { Day } from "util/Day";
 import day1data from "./data/day1";
 
 const makeData = (data: string) => {
   return data.split("\n").map((raw: string) => Number(raw));
-};
-
-const findTwo = (data: number[]): number => {
-  let second = -1;
-
-  const first = data.find((a) =>
-    data.find((b) => {
-      if (a + b === 2020) {
-        second = b;
-        return true;
-      }
-      return false;
-    })
-  );
-  return first !== undefined ? first * second : -1;
 };
 
 const findThree = (data: number[]): number => {
@@ -53,7 +39,7 @@ Before you leave for vacation, the Elves in accounting need you to fix your expe
 * Find the two values in a list that add up to 2020
 * Return the product of those two values
 `,
-      func: (data) => findTwo(data),
+      func: (data) => findTwo(data, 2020),
       tests: [{ data: "1721\n979\n366\n299\n675\n1456", result: 1721 * 299 }],
     },
     {

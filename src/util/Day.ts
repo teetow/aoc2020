@@ -1,6 +1,7 @@
 export type Test<T, K extends number | string | boolean> = {
   data: T;
   result: K;
+  func?: (arg0: T) => K;
 };
 
 export type TestRun<T extends number | string | boolean> = Test<unknown, T> & {

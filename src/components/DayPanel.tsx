@@ -60,7 +60,7 @@ const makeDay = (day: Day<unknown>, part: DayPart<unknown>) => {
         {part.tests?.map((test, index) =>
           makeTestResult({
             index,
-            runResult: part.func?.(
+            runResult: (test.func ? test.func : part.func)?.(
               day.dataConv !== undefined
                 ? day.dataConv(test.data as string)
                 : test.data
@@ -81,7 +81,7 @@ type Props = {
 };
 
 const DayPanel: FunctionComponent<Props> = ({ day, year, dayIndex }: Props) => {
-  const { data, parts, title, description, dataConv } = day;
+  const { data, parts, title, description } = day;
 
   return (
     <div className="my-day">

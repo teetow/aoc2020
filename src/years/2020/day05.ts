@@ -1,5 +1,5 @@
 import { Day } from "util/Day";
-import day5data from "./data/day5";
+import day5data from "./data/day05";
 
 type BoardingPass = {
   row: number;

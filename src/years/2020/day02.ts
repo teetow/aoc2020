@@ -1,6 +1,6 @@
 import count from "util/count";
 import { Day } from "util/Day";
-import day2data from "./data/day2";
+import day2data from "./data/day02";
 
 type PasswordRecord = {
   lo: number;

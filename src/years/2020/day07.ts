@@ -1,5 +1,5 @@
 import { Day } from "util/Day";
-import day7data, { test1data, test2data } from "./data/day7";
+import day7data, { test1data, test2data } from "./data/day07";
 
 type Bag = {
   mod: string;

@@ -1,6 +1,6 @@
 import { findTwo } from "util/collections";
 import { Day } from "util/Day";
-import day9data, { test1data } from "./data/day9";
+import day9data, { test1data } from "./data/day09";
 
 const makeData = (data: string) => {
   return data.split("\n").map((row) => Number(row));

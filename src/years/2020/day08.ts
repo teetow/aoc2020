@@ -1,5 +1,5 @@
 import { Day } from "util/Day";
-import day8data, { test1data } from "./data/day8";
+import day8data, { test1data } from "./data/day08";
 import Handheld, { Instruction } from "./handheld";
 
 const makeData = (data: string) => {

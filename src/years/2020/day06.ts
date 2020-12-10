@@ -1,5 +1,5 @@
 import { Day } from "util/Day";
-import { data as day6data, testdata1a, testdata1b } from "./data/day6";
+import { data as day6data, testdata1a, testdata1b } from "./data/day06";
 
 const makeData = (data: string) => data.split("\n\n");
 

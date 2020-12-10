@@ -1,13 +1,13 @@
 import { Day } from "util/Day";
-import day1 from "./2020/day1";
-import day2 from "./2020/day2";
-import day3 from "./2020/day3";
-import day4 from "./2020/day4";
-import day5 from "./2020/day5";
-import day6 from "./2020/day6";
-import day7 from "./2020/day7";
-import day8 from "./2020/day8";
-import day9 from "./2020/day9";
+import day1 from "./2020/day01";
+import day2 from "./2020/day02";
+import day3 from "./2020/day03";
+import day4 from "./2020/day04";
+import day5 from "./2020/day05";
+import day6 from "./2020/day06";
+import day7 from "./2020/day07";
+import day8 from "./2020/day08";
+import day9 from "./2020/day09";
 
 const days = new Map<number, Day<unknown>>();
 

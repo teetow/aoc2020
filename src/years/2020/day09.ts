@@ -43,11 +43,10 @@ const findWeakRange = (numbers: number[], preamble: number): number => {
 };
 
 const day9: Day<number[]> = {
-  title: "Handheld Halting",
+  title: "Encoding Error",
   description: `
-  While you consider checking the in-flight menu for one of those drinks 
-  that come with a little umbrella, you are interrupted by the kid sitting 
-  next to you. Their handheld game console won't turn on!
+  With your neighbor happily enjoying their video game, you turn your attention to 
+  an open data port on the little screen in the seat in front of you.
 `,
   data: day9data,
   dataConv: makeData,
@@ -55,7 +54,7 @@ const day9: Day<number[]> = {
     {
       title: "Part 1",
       description: `
-* Find the value in the accumulator when the console goes into an endless loop
+* Find the first number in the list (after the preamble) which is not the sum of two of the 25 numbers before it
 `,
       func: (data) => findWeakNumber(data, 25),
       tests: [
@@ -69,8 +68,7 @@ const day9: Day<number[]> = {
     {
       title: "Part 2",
       description: `
-* Fix the program so that it terminates normally
-* Change exactly one jmp (to nop) or nop (to jmp)
+* find a contiguous set of at least two numbers in your list which sum to the invalid number from step 1
 `,
       func: (data) => findWeakRange(data, 25),
       tests: [

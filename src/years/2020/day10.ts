@@ -58,7 +58,7 @@ const findPermutations = (data: number[]): number => {
   );
 };
 
-const day9: Day<number[]> = {
+const day10: Day<number[]> = {
   title: "Adapter Array",
   description: `
   You discover weather forecasts of a massive tropical storm. Before you can figure 
@@ -110,4 +110,4 @@ const day9: Day<number[]> = {
   ],
 };
 
-export default day9;
+export default day10;

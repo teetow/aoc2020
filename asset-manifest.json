@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/aoc2020/static/css/main.1e48d90a.chunk.css",
-    "main.js": "/aoc2020/static/js/main.d22f08e3.chunk.js",
-    "main.js.map": "/aoc2020/static/js/main.d22f08e3.chunk.js.map",
+    "main.js": "/aoc2020/static/js/main.ddda88fa.chunk.js",
+    "main.js.map": "/aoc2020/static/js/main.ddda88fa.chunk.js.map",
     "runtime-main.js": "/aoc2020/static/js/runtime-main.b7da755e.js",
     "runtime-main.js.map": "/aoc2020/static/js/runtime-main.b7da755e.js.map",
-    "static/js/2.fded7f02.chunk.js": "/aoc2020/static/js/2.fded7f02.chunk.js",
-    "static/js/2.fded7f02.chunk.js.map": "/aoc2020/static/js/2.fded7f02.chunk.js.map",
+    "static/js/2.a3fc99e2.chunk.js": "/aoc2020/static/js/2.a3fc99e2.chunk.js",
+    "static/js/2.a3fc99e2.chunk.js.map": "/aoc2020/static/js/2.a3fc99e2.chunk.js.map",
     "index.html": "/aoc2020/index.html",
     "static/css/main.1e48d90a.chunk.css.map": "/aoc2020/static/css/main.1e48d90a.chunk.css.map",
-    "static/js/2.fded7f02.chunk.js.LICENSE.txt": "/aoc2020/static/js/2.fded7f02.chunk.js.LICENSE.txt"
+    "static/js/2.a3fc99e2.chunk.js.LICENSE.txt": "/aoc2020/static/js/2.a3fc99e2.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.b7da755e.js",
-    "static/js/2.fded7f02.chunk.js",
+    "static/js/2.a3fc99e2.chunk.js",
     "static/css/main.1e48d90a.chunk.css",
-    "static/js/main.d22f08e3.chunk.js"
+    "static/js/main.ddda88fa.chunk.js"
   ]
 }

@@ -7,6 +7,9 @@ export const count = (haystack: string, needle: string): number => {
   return score;
 };
 
+export const range = (start: number, end: number) =>
+  Array.from(Array(end + 1).keys()).slice(start);
+
 export const findTwo = (data: number[], target: number): number => {
   let second = -1;
 

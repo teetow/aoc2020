@@ -22,5 +22,6 @@ $base: ".my-day__dataview";
   max-width: 25vw;
   overflow: hidden;
   white-space: pre;
+  text-overflow: ellipsis;
   padding: 0 32px 32px;
 }

@@ -1,19 +1,18 @@
-// def timestamp(start, msg=""):
-//     delta = (time.time() - start)*1000
-//     unit = "ms"
-//     if delta < 1/1000:
-//         delta = delta * 1000
-//         unit = "µs"
-//     print(f"{delta:8.2f} {unit}\t{msg}")
-
 const prettyPerfTimer = (time: number) => {
-  let delta = time;
-  let unit = "ms";
-  if (delta < 1 / 1000) {
+  let delta = time / 1000.0;
+  let unit = "s";
+
+  if (delta < 1) {
+    delta *= 1000;
+    unit = "ms";
+  }
+
+  if (delta < 1) {
     delta *= 1000;
     unit = "µs";
   }
-  return `${delta.toPrecision(2)}${unit}`;
+  console.log(`writing ${time} as ${delta.toPrecision(3)}${unit}`);
+  return `${delta.toPrecision(3)}${unit}`;
 };
 
 export default prettyPerfTimer;

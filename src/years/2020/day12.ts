@@ -11,6 +11,13 @@ type Direction = typeof Directions[number];
 const Turns = ["L", "R"] as const;
 type Turn = typeof Turns[number];
 
+const TurnTransforms = {
+  0: (p: Point) => p,
+  1: (p: Point) => pt(-p.y, p.x),
+  2: (p: Point) => pt(-p.x, -p.y),
+  3: (p: Point) => pt(p.y, -p.x),
+};
+
 type Movement = Direction | Turn | "F";
 
 const DirectionMoves: Record<Direction, Point> = {
@@ -28,29 +35,59 @@ type Instruction = {
 class Ferry {
   location: Point;
   heading: Direction;
+  waypoint: Point;
 
-  constructor(location: Point = pt(0, 0), heading: Direction = "E") {
+  constructor(
+    location: Point = pt(0, 0),
+    heading: Direction = "E",
+    waypoint: Point = pt(10, -1)
+  ) {
     this.location = location;
     this.heading = heading;
+    this.waypoint = waypoint;
   }
 
-  Move = (instruction: Instruction) => {
+  Move = (vector: Point, steps: number) => {
+    this.location.x += vector.x * steps;
+    this.location.y += vector.y * steps;
+  };
+
+  Turn = (turn: Turn, steps: number) => {
+    const turnSteps = (turn === "R" ? 1 : -1) * (steps / 90);
+    const currentIndex = Directions.indexOf(this.heading) + 4;
+    this.heading = Directions[(currentIndex + turnSteps) % 4];
+  };
+
+  MoveWaypoint = (vector: Point, steps: number) => {
+    this.waypoint.x += vector.x * steps;
+    this.waypoint.y += vector.y * steps;
+  };
+
+  Do = (instruction: Instruction) => {
     const { move, steps } = instruction;
     if (Directions.includes(move as Direction)) {
-      this.location.x += DirectionMoves[move as Direction].x * steps;
-      this.location.y += DirectionMoves[move as Direction].y * steps;
+      this.Move(DirectionMoves[move as Direction], steps);
     } else if (Turns.includes(move as Turn)) {
-      const turnMultiplier = move === "R" ? 1 : -1;
-      this.heading =
-        Directions[
-          (Directions.indexOf(this.heading) +
-            4 +
-            turnMultiplier * (steps / 90)) %
-            4
-        ];
+      this.Turn(move as Turn, steps);
     } else {
-      this.location.x += DirectionMoves[this.heading].x * steps;
-      this.location.y += DirectionMoves[this.heading].y * steps;
+      this.Move(DirectionMoves[this.heading], steps);
+    }
+  };
+
+  DoWithWaypoint = (instruction: Instruction) => {
+    const { move, steps } = instruction;
+
+    if (Directions.includes(move as Direction)) {
+      this.MoveWaypoint(DirectionMoves[move as Direction], steps);
+    }
+    if (Turns.includes(move as Turn)) {
+      const turnSteps = ((move === "R" ? 1 : -1) * (steps / 90) + 4) % 4;
+      const transform =
+        TurnTransforms[turnSteps as keyof typeof TurnTransforms];
+      this.waypoint = transform(this.waypoint);
+    }
+    if (move === "F") {
+      this.Move(this.waypoint, steps);
     }
   };
 
@@ -72,7 +109,15 @@ const makeData = (data: string): Instruction[] => {
 const part1 = (data: Instruction[]): number => {
   const f = new Ferry(pt(0, 0), "E");
   data.forEach((step) => {
-    f.Move(step);
+    f.Do(step);
+  });
+  return f.getManhattanDistFrom(pt(0, 0));
+};
+
+const part2 = (data: Instruction[]): number => {
+  const f = new Ferry(pt(0, 0), "E", pt(10, -1));
+  data.forEach((step) => {
+    f.DoWithWaypoint(step);
   });
   return f.getManhattanDistFrom(pt(0, 0));
 };
@@ -99,6 +144,21 @@ const day12: Day<Instruction[]> = {
         {
           data: test1data,
           result: 17 + 8,
+        },
+      ],
+    },
+    {
+      title: "Part 2",
+      description: `
+* All of the actions indicate how to move a waypoint which is relative to the ship's position
+* Move the ship according to the updated instructions
+* What is the Manhattan distance between the ship's starting and final position?
+`,
+      func: (data) => part2(data),
+      tests: [
+        {
+          data: test1data,
+          result: 214 + 72,
         },
       ],
     },

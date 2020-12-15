@@ -9,26 +9,27 @@ const makeData = (data: string): DataType[] => {
 };
 
 const part1 = (startingNumbers: DataType[], stopAt: number): number => {
-  const queue = [
-    ...startingNumbers,
-    ...Array<number>(stopAt - 1 - startingNumbers.length),
-  ];
+  const table = Array<Array<number>>();
 
+  const addNum = (num: number, index: number) => {
+    if (table[num] === undefined) table[num] = Array<number>();
+    table[num].push(index);
+  };
+
+  startingNumbers.forEach(addNum);
+
+  let lastNum = startingNumbers[startingNumbers.length - 1];
   for (let i = startingNumbers.length; i <= stopAt - 1; i += 1) {
-    const lastNum = queue[i - 1];
-    const lastNumCtr = queue
-      .map((num, index) => ({ index, num }))
-      .filter(({ index, num }) => num === lastNum);
+    const entry = table[lastNum];
 
-    if (lastNumCtr.length >= 2) {
-      queue[i] =
-        lastNumCtr[lastNumCtr.length - 1].index -
-        lastNumCtr[lastNumCtr.length - 2].index;
+    if (entry && entry.length >= 2) {
+      lastNum = entry[entry.length - 1] - entry[entry.length - 2];
     } else {
-      queue[i] = 0;
+      lastNum = 0;
     }
+    addNum(lastNum, i);
   }
-  return queue[stopAt - 1];
+  return lastNum;
 };
 
 const day14: Day<number[]> = {
@@ -63,7 +64,7 @@ const day14: Day<number[]> = {
       description: `
 * **what will be the 30,000,000th number spoken?**
     `,
-      func: (data) => Number(part1(data, 3000)),
+      func: (data) => Number(part1(data, 30 * 1000 * 1000)),
     },
   ],
 };

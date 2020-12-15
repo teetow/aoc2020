@@ -10,6 +10,8 @@ $base: ".my-picker";
   margin: 24px auto;
   gap: 8px;
   cursor: default;
+  grid-template-columns: repeat(auto-fit, 8%);
+  grid-auto-flow: row;
 }
 
 #{$base}__option {
@@ -21,6 +23,7 @@ $base: ".my-picker";
   padding: 0 16px;
   display: grid;
   place-items: center;
+
   &--current {
     background-color: tokens.$color-accent;
   }
